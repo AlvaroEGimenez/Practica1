@@ -5,8 +5,8 @@ public class Curso {
     //ATRIBUTOS
     private String nombre;
     private Integer codigoCurso;
-    private ProfesorTitular profesorTitular;
-    private ProfesorAdjunto profesorAdjunto;
+    private Profesor profesorTitular;
+    private Profesor profesorAdjunto;
     private Integer cupoMaximo;
     private List<Alumno> listaAlumnos = new ArrayList<>();
 
@@ -15,8 +15,10 @@ public class Curso {
     public Curso(String nombre, Integer codigoCurso, Integer cupoMaximo) {
         this.nombre = nombre;
         this.codigoCurso = codigoCurso;
-        this.cupoMaximo = cupoMaximo;
+        this.cupoMaximo = cupoMaximo=0;
     }
+
+
     //GETTERS
 
 
@@ -25,12 +27,16 @@ public class Curso {
     }
 
     //SETTERS
-    protected void setProfesorAdjunto(ProfesorAdjunto profesorAdjunto) {
+    protected void setProfesorAdjunto(Profesor profesorAdjunto) {
         this.profesorAdjunto = profesorAdjunto;
     }
 
-    protected void setProfesorTitular(ProfesorTitular profesorTitular) {
+    protected void setProfesorTitular(Profesor profesorTitular) {
         this.profesorTitular = profesorTitular;
+    }
+
+    protected void setCupoMaximo(Integer cupoMaximo) {
+        this.cupoMaximo = cupoMaximo;
     }
 
     //METODOS
