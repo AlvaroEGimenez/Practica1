@@ -6,4 +6,12 @@ public class Inscripcion {
     private Curso curso;
     private Date fecha = new Date();
 
+    //CONSTRUCTOR
+
+
+    public Inscripcion(Alumno alumno, Curso curso) {
+        this.alumno = alumno;
+        this.curso = curso;
+
+    }
 }

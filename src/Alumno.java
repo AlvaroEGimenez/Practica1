@@ -15,6 +15,11 @@ public  class Alumno {
 
     //GETTERS
 
+
+    public Integer getCodigoAlumno() {
+        return codigoAlumno;
+    }
+
     public String getNombre() {
         return nombre;
     }

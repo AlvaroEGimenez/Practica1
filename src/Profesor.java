@@ -13,4 +13,10 @@ public abstract class Profesor {
         this.apellido = apellido;
         this.codProfesor = codProfesor;
     }
+
+    //GETTERS
+
+    public Integer getCodProfesor() {
+        return codProfesor;
+    }
 }

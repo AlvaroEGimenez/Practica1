@@ -12,12 +12,25 @@ public class Curso {
 
     //CONSTRUCTOR
 
-    public Curso(String nombre, Integer codigoCurso, ProfesorTitular profesorTitular, ProfesorAdjunto profesorAdjunto, Integer cupoMaximo) {
+    public Curso(String nombre, Integer codigoCurso, Integer cupoMaximo) {
         this.nombre = nombre;
         this.codigoCurso = codigoCurso;
-        this.profesorTitular = profesorTitular;
-        this.profesorAdjunto = profesorAdjunto;
         this.cupoMaximo = cupoMaximo;
+    }
+    //GETTERS
+
+
+    public Integer getCodigoCurso() {
+        return codigoCurso;
+    }
+
+    //SETTERS
+    protected void setProfesorAdjunto(ProfesorAdjunto profesorAdjunto) {
+        this.profesorAdjunto = profesorAdjunto;
+    }
+
+    protected void setProfesorTitular(ProfesorTitular profesorTitular) {
+        this.profesorTitular = profesorTitular;
     }
 
     //METODOS
