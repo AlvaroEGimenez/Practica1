@@ -15,7 +15,7 @@ public class Curso {
     public Curso(String nombre, Integer codigoCurso, Integer cupoMaximo) {
         this.nombre = nombre;
         this.codigoCurso = codigoCurso;
-        this.cupoMaximo = cupoMaximo=0;
+        this.cupoMaximo = cupoMaximo;
     }
 
 
@@ -41,15 +41,14 @@ public class Curso {
 
     //METODOS
         public Boolean agregarAlumno(Alumno alumno){
-             Boolean hayCupo = cupoMaximo <= cupoMaximo + 1;
-
+             Boolean hayCupo = cupoMaximo > listaAlumnos.size();
              if(hayCupo){
                 listaAlumnos.add(alumno);
-                cupoMaximo += cupoMaximo;
-            return true;
+                System.out.println("Se inscribio al alumno en el curso " + codigoCurso);
+                return true;
             }
             else{
-                System.out.println("No hay cupo disponible en el curso "+this.nombre);
+                System.out.println("No hay cupo disponible en el curso "+codigoCurso);
                 return false;
             }
         }
@@ -65,7 +64,6 @@ public class Curso {
         }
         if(alumnoEliminar != null){
             listaAlumnos.remove(alumnoEliminar);
-            cupoMaximo = cupoMaximo - 1;
             System.out.println("Se elimino al Alumno "+alumnoEliminar.getNombre()+" "+alumnoEliminar.getApellido());
         }
         else {

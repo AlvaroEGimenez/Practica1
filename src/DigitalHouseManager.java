@@ -17,15 +17,15 @@ public class DigitalHouseManager {
     }
 
     public void bajaCurso(Integer codigoCurso) {
-        Integer baja = null;
+        Curso cursoBuscar = null;
         for (Curso cursoARecorrer : listaCursos) {
             if (cursoARecorrer.getCodigoCurso().equals(codigoCurso)) {
-                baja = listaCursos.hashCode();
+                cursoBuscar = cursoARecorrer;
                 break;
             }
         }
-        if (baja != null) {
-            listaCursos.remove(baja);
+        if (cursoBuscar != null) {
+            listaCursos.remove(cursoBuscar);
             System.out.println("Se elimino el curso " + codigoCurso);
         } else {
             System.out.println("El codigo de curso no existe!");
@@ -43,16 +43,16 @@ public class DigitalHouseManager {
     }
 
     public void bajaProfesor(Integer codigoProfesor) {
-        Integer bajaProfesor = null;
+        Profesor profesorBaja = null;
         for (Profesor profesorARecorrer : listaProfesores) {
             if (profesorARecorrer.getCodProfesor().equals(codigoProfesor)) {
-                bajaProfesor = profesorARecorrer.hashCode();
+                profesorBaja = profesorARecorrer;
                 break;
             }
         }
-        if (bajaProfesor != null) {
-            listaProfesores.remove(bajaProfesor);
-            System.out.println("Se elimino al profesor COD:" + codigoProfesor);
+        if (profesorBaja != null) {
+            listaProfesores.remove(profesorBaja);
+            System.out.println("Se elimino al profesor COD: " + codigoProfesor);
         } else {
             System.out.println("El codigo de Profesor no existe!");
         }
@@ -64,44 +64,74 @@ public class DigitalHouseManager {
     }
 
     public void inscribirAlumno(Integer codigoAlumno, Integer codigoCurso) {
-        for (Alumno alumnoBuscar : listaAlumnos) {
-            if (alumnoBuscar.getCodigoAlumno().equals(codigoAlumno)) {
-                for (Curso cursoBuscar : listaCursos){
-                    if (cursoBuscar.getCodigoCurso().equals(codigoCurso)){
-                        cursoBuscar.agregarAlumno(alumnoBuscar);
-                        Inscripcion inscripcion = new Inscripcion(alumnoBuscar, cursoBuscar);
-                        listaIncripciones.add(inscripcion);
-                        break;
-                    }
-                }
+        Alumno alumnoBuscar = null;
+        for (Alumno alumnoRecorrer : listaAlumnos) {
+            if (alumnoRecorrer.getCodigoAlumno().equals(codigoAlumno)) {
+                alumnoBuscar = alumnoRecorrer;
+                break;
             }
         }
+        Curso cursoBuscar = null;
+        for (Curso cursoRecorrer : listaCursos){
+            if (cursoRecorrer.getCodigoCurso().equals(codigoCurso)){
+                cursoBuscar = cursoRecorrer;
+                break;
+            }
+        }
+        if (cursoBuscar == null){
+            System.out.println("El codigo de curso no es valido!");
+        }
+        else {
+            if (alumnoBuscar != null){
+                if(cursoBuscar.agregarAlumno(alumnoBuscar)){
+                    Inscripcion nuevaInscripcion = new Inscripcion(alumnoBuscar,cursoBuscar);
+                    alumnoBuscar.agregarCurso(cursoBuscar);
+                }
+        }
+            else {
+                System.out.println("No se encontro el alumno");
+            }
+        }
+
     }
 
     public void asignarProfesores(Integer codigoCurso, Integer codigoProfesorTitular, Integer codigoProfesorAdjunto) {
+        Profesor profesorTitularAsignar = null;
         for (Profesor profesorTitularBuscar : listaProfesores) {
             if (profesorTitularBuscar.getCodProfesor().equals(codigoProfesorTitular)) {
-                for (Curso cursoBuscar : listaCursos) {
-                    if (cursoBuscar.getCodigoCurso().equals(codigoCurso)) {
-                        cursoBuscar.setProfesorTitular(profesorTitularBuscar);
-                        System.out.println("Se asigno profesor titular al Curso!");
-                        break;
-                    }
-                }
-
+                profesorTitularAsignar = profesorTitularBuscar;
+                break;
             }
         }
+        Profesor profesorAdjuntoAsignar = null;
         for (Profesor profesorAdjunto : listaProfesores) {
             if (profesorAdjunto.getCodProfesor().equals(codigoProfesorTitular)) {
-                for (Curso cursoBuscar : listaCursos) {
-                    if (cursoBuscar.getCodigoCurso().equals(codigoCurso)) {
-                        cursoBuscar.setProfesorTitular(profesorAdjunto);
-                        System.out.println("Se asigno profesor titular al Curso!");
-                        break;
-                    }
-                }
-
+                profesorAdjuntoAsignar = profesorAdjuntoAsignar;
+                break;
             }
+        }
+        if (profesorTitularAsignar != null){
+            for (Curso cursoBuscar : listaCursos){
+                if(cursoBuscar.getCodigoCurso().equals(codigoCurso)){
+                    cursoBuscar.setProfesorTitular(profesorTitularAsignar);
+                    break;
+                }
+            }
+        }
+        else {
+            System.out.println("El codigo del Profesor Titular no es correcto!");
+        }
+
+        if (profesorAdjuntoAsignar != null){
+            for (Curso cursoBuscar : listaCursos){
+                if(cursoBuscar.getCodigoCurso().equals(codigoCurso)){
+                    cursoBuscar.setProfesorTitular(profesorAdjuntoAsignar);
+                    break;
+                }
+            }
+        }
+        else {
+            System.out.println("El codigo del Profesor Adjunto no es correcto!");
         }
     }
 }
